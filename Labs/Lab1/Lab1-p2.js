@@ -11,15 +11,15 @@ const app = http.createServer((req, res) => {
         res.end(webpage)
     }
     else if(req.url === "/about") {
-        let webpage = fs.readFileSync("homepage.html")
+        let webpage = fs.readFileSync("about.html")
         res.end(webpage)
     }
     else if(req.url === "/contact_us") {
-        let webpage = fs.readFileSync("homepage.html")
+        let webpage = fs.readFileSync("contact_us.html")
         res.end(webpage)
     }
     else if(req.url === "/login") {
-        let webpage = fs.readFileSync("homepage.html")
+        let webpage = fs.readFileSync("login.html")
         res.end(webpage)
     }
     else {res.end("Error 404 - Page not Found")}
