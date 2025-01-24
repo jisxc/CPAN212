@@ -51,6 +51,15 @@ app.get("/itm/:itemID", (req, res)=>{
     res.send("Welcome to the item list")
 })
 
+app.get("/", (req, res)=>{
+    // do something 
+    res
+})
+
+app.listen(PORT, ()=>{
+    console.log(`http://localhost:${PORT}`)
+})
+
 /*
 /https:
 /en-ca
@@ -60,7 +69,6 @@ app.get("/itm/:itemID", (req, res)=>{
 ?
 path=
 category:Computers+&+Ta
+*/
 
-app.listen(PORT, ()=>{
-    console.log(`http://localhost:${PORT}`)
-})
+

@@ -16,3 +16,5 @@ empty{} means objects
 + means a%B
 %25B is &
 %25 is +
+
+Query and Params - get and send data
