@@ -1,5 +1,7 @@
-This is a skeleton to help get my students started with their lab: uploading files and fetching files.
+Student Name: Aj Sia Cunco 
+Student Number: N01611199
 
+This is a skeleton to help get my students started with their lab: uploading files and fetching files.
 
 to run apps
 
