@@ -17,7 +17,7 @@ const experience = [
 ];
 
 const overview = {
-  name: "Jia Jane",
+  name: "Aj Sia Cunco",
   bio: "Passionate software developer with a keen interest in React and full-stack development."
 };
 
