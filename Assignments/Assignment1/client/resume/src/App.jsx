@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>My Online Resume</h1>
+      <h1>My Resume</h1>
 
       <div className="p-3">
         <h2>{overview.name}</h2>
