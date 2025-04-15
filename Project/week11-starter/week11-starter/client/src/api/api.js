@@ -1,12 +1,18 @@
-// src/api/api.js
 import axios from 'axios';
 
-// Make sure the API_URL is correctly set in the .env file
+// Load base API URL from environment variables
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Add Knit function
+// Basic Auth header generator for Ravelry or backend if needed
+const getBasicAuthHeader = () => {
+  const username = import.meta.env.VITE_RAVELRY_USERNAME;
+  const password = import.meta.env.VITE_RAVELRY_PASSWORD;
+  return 'Basic ' + btoa(`${username}:${password}`);
+};
+
+// Add a new knit pattern (to your backend)
 export const addKnit = async (knitData) => {
-  const basicAuth = 'Basic ' + btoa(`${import.meta.env.VITE_RAVELRY_USERNAME}:${import.meta.env.VITE_RAVELRY_PASSWORD}`);
+  const basicAuth = getBasicAuthHeader();
 
   return await axios.post(`${API_URL}/knits`, knitData, {
     headers: {
@@ -16,7 +22,7 @@ export const addKnit = async (knitData) => {
   });
 };
 
-// Other possible functions (login, etc.)
+// User login (custom backend)
 export const login = async ({ email, password }) => {
   const response = await axios.post(`${API_URL}/login`, { email, password });
   return response.data;

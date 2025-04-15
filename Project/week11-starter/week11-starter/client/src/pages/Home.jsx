@@ -3,31 +3,33 @@ import { Link } from "react-router-dom";
 
 const Homepage = () => {
   const [knits, setKnits] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [error, setError] = useState(null); // Add error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch featured knits on component mount
   useEffect(() => {
     const fetchKnits = async () => {
       try {
-        const token = localStorage.getItem("authToken");
+        const username = import.meta.env.VITE_RAVELRY_USERNAME;
+        const password = import.meta.env.VITE_RAVELRY_PASSWORD;
+        const credentials = btoa(`${username}:${password}`);
+
         const response = await fetch(`${import.meta.env.VITE_SERVER_URL}api/knits`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Add token to headers
+            Authorization: `Basic ${credentials}`,
           },
         });
 
         if (!response.ok) {
-          throw new Error("Error fetching knits.");
+          throw new Error(`Error ${response.status}: Failed to fetch knits.`);
         }
 
         const data = await response.json();
-        setKnits(data.slice(0, 5)); // Show the first 5 knits
-      } catch (error) {
-        console.error("Error fetching knits:", error);
+        setKnits(data.slice(0, 5)); // Only show the first 5 knits
+      } catch (err) {
+        console.error("Error fetching knits:", err);
         setError("Failed to fetch knits. Please try again later.");
       } finally {
-        setLoading(false); // Set loading to false once the fetch completes
+        setLoading(false);
       }
     };
 
@@ -39,14 +41,15 @@ const Homepage = () => {
       <h2 style={styles.heading}>Featured Knitting Patterns:</h2>
 
       {loading ? (
-        <p>Loading...</p> // Show loading message
+        <p>Loading...</p>
       ) : error ? (
-        <p style={styles.error}>{error}</p> // Show error message
+        <p style={styles.error}>{error}</p>
       ) : (
         <div style={styles.knitList}>
           {knits.length > 0 ? (
             knits.map((knit) => (
               <div key={knit._id} style={styles.knitCard}>
+                {knit.image && <img src={knit.image} alt={knit.title} style={styles.image} />}
                 <h3 style={styles.knitTitle}>{knit.title}</h3>
                 <p><strong>Knit by:</strong> {knit.author}</p>
                 <p><strong>Price:</strong> ${knit.price.toFixed(2)}</p>
@@ -65,15 +68,14 @@ const Homepage = () => {
 const styles = {
   container: {
     padding: "30px",
-    maxWidth: "1200px",
+    maxWidth: "800px",
     margin: "0 auto",
   },
   heading: {
-    color: "#6b4a30",
+    color: "#c6328d",
     fontSize: "2rem",
-    borderBottom: "2px solid #6b4a30",
-    display: "inline-block",
     marginBottom: "20px",
+    textAlign: "center",
   },
   knitList: {
     display: "grid",
@@ -87,6 +89,13 @@ const styles = {
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
     padding: "20px",
     textAlign: "center",
+  },
+  image: {
+    width: "100%",
+    height: "200px",
+    objectFit: "cover",
+    borderRadius: "5px",
+    marginBottom: "10px",
   },
   knitTitle: {
     fontSize: "1.5rem",

@@ -1,60 +1,70 @@
-/* Global Reset: Remove margin and padding, and ensure consistent box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body Styles */
 body {
-  font-family: "Georgia", serif;
-  background-color: #f9f7f1; /* Soft, creamy background */
-  color: #333;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #c5c5cc;
+  color: gray;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
-  background-image: url('https://example.com/knit-pattern.png'); /* Subtle knit pattern background */
-  background-repeat: repeat;
+  justify-content: space-between;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: space-between;
 }
 
 main {
   flex-grow: 1;
 }
 
-/* Heading 2 styles */
+.footer {
+  height: 4rem;
+  background-color: #181730;
+  color: #c6328d;
+  text-align: center;
+  line-height: 4rem;
+  font-family: 'Lobster', cursive;
+  font-size: .90rem;
+}
+
 h2 {
-  color: #7a4d2b; /* Rich, warm brown */
+  color: #c6328d;
   font-size: 2.5rem;
-  font-family: 'Lobster', cursive; /* A playful, handwritten font */
-  border-bottom: 2px dashed #7a4d2b; /* Dashed border to feel like thread */
+  font-family: 'Lobster', cursive;
+  border-bottom: 2px dashed #c6328d;
   text-align: center;
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
 
-/* Navigation Bar (Top Bar) */
 .navigation {
-  background-color: #a56d4d; /* Soft, earthy color */
-  color: #fff;
+  background-color: #181730;
+  color: #c6328d;
   padding: 12px 25px;
   display: flex;
   justify-content: space-between;
 }
 
 .brand-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: 'Lobster', cursive;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+}
+
 nav a {
-  color: #fff;
+  color: #c6328d;
   text-decoration: none;
   margin: 0 15px;
   font-family: 'Arial', sans-serif;
@@ -62,42 +72,52 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
-  color: #e3d1b5; /* A soft light color to highlight links */
+  color: white;
 }
 
-/* Footer */
-.footer {
-  height: 4rem;
-  background-color: #a56d4d;
-  color: #fff;
-  text-align: center;
-  line-height: 4rem;
-  font-family: 'Georgia', serif;
-  font-size: 1.1rem;
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-/* Page containers: Add Book, All Books, etc. */
-.add-book,
-.all-books {
-  padding: 40px;
-  max-width: 900px;
-  margin: 0 auto;
-  background-color: #f4f1ea;
-  color: #333;
-  font-family: "Georgia", serif;
-  border: 2px solid #7a4d2b; /* Adding a thread-like border */
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 20px;
 }
 
-/* Form container */
+.nav-auth {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-auth button {
+  background-color: #181730;
+  color: #c6328d;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-auth button:hover {
+  background-color: white;
+  color: #c6328d;
+}
+
+/* General form styles */
 form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 450px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #1c2841;
   border-radius: 12px;
   padding: 20px;
 }
@@ -110,203 +130,97 @@ form textarea {
   font-size: 1.1rem;
   border-radius: 6px;
   border: 1px solid #ddd;
-  background-color: #f7f3e3; /* Soft background */
+  background-color: #c5c5cc;
   font-family: 'Arial', sans-serif;
 }
 
-form input[type="submit"] {
+form input[type="submit"],
+form button {
   padding: 12px;
   font-size: 1.3rem;
-  background-color: #7a4d2b;
-  color: #f9f7f1;
+  background-color: #181730;
+  color: #c6328d;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   width: 100%;
-  font-family: 'Georgia', serif;
-}
-
-form input[type="submit"]:hover {
-  background-color: #8e5e42;
-}
-
-/* Book List Grid Layout (All Books page) */
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-/* Book Card Styles */
-.book-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: #fff3e1; /* Soft crochet-like color */
-}
-
-.book-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.book-card h3 {
-  font-size: 1.8rem;
-  color: #7a4d2b;
-  margin: 15px 0;
-  font-family: 'Georgia', serif;
-}
-
-.book-card p {
-  font-size: 1.1rem;
-  margin: 10px 0;
-}
-
-.book-card a {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 20px;
-  background-color: #7a4d2b;
-  color: #f9f7f1;
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  transition: background-color 0.3s;
-}
-
-.book-card a:hover {
-  background-color: #8e5e42;
-}
-
-/* Error message styling */
-.error {
-  color: red;
-  font-size: 1.1rem;
-  margin-top: -10px;
-  margin-bottom: 20px;
-}
-
-/* Flexbox form styling */
-.add-book form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.add-book input,
-.add-book textarea {
-  padding: 12px;
-  font-size: 1.1rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  width: 100%;
-  background-color: #f7f3e3;
-  color: #333;
-}
-
-.add-book input:focus,
-.add-book textarea:focus {
-  border-color: #7a4d2b;
-  outline: none;
-}
-
-.add-book button {
-  padding: 14px 25px;
-  background-color: #7a4d2b;
-  color: #f9f7f1;
-  border: none;
-  border-radius: 6px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.add-book button:hover {
-  background-color: #8e5e42;
-}
-
-.add-book label {
-  font-size: 1.2rem;
-  color: #7a4d2b;
-}
-
-/* Register Page container */
-.register {
-  padding: 35px;
-  max-width: 550px;
-  margin: 0 auto;
-  background-color: #f9f7f1;
-  color: #333;
-  border-radius: 12px;
-  border: 1px solid #7a4d2b;
-}
-
-.register h2 {
-  color: #7a4d2b;
-  font-size: 2.2rem;
-  border-bottom: 2px dashed #7a4d2b;
-  margin-bottom: 20px;
-  text-align: center;
   font-family: 'Lobster', cursive;
 }
 
-/* Form input styles */
-.register input[type="text"],
-.register input[type="email"],
-.register input[type="password"] {
-  padding: 12px;
-  font-size: 1.1rem;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  width: 100%;
-  margin-bottom: 18px;
-  background-color: #f7f3e3;
+form input[type="submit"]:hover,
+form button:hover {
+  background-color: #181730;
+  color: white;
 }
 
-/* Button styling */
-.register button {
-  padding: 12px;
-  font-size: 1.3rem;
-  background-color: #7a4d2b;
-  color: #f9f7f1;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s;
+form input:focus,
+form textarea:focus {
+  border-color: #181730;
+  outline: none;
 }
 
-/* Button hover effect */
-.register button:hover {
-  background-color: #8e5e42;
-}
-
-/* Login Page container */
+/* Add Knit, Register, and Login Specific Styles */
+.add-knit,
+.all-knits,
+.register,
 .login {
   padding: 35px;
   max-width: 550px;
   margin: 0 auto;
   background-color: #f9f7f1;
-  color: #333;
+  color: gray;
   border-radius: 12px;
-  border: 1px solid #7a4d2b;
+  border: 1px solid #181730;
 }
 
-/* Heading (title) styling */
-.login h2 {
-  color: #7a4d2b;
-  font-size: 2.2rem;
-  border-bottom: 2px dashed #7a4d2b;
-  margin-bottom: 20px;
+.add-knit,
+.all-knits {
+  background-color: #f4f1ea;
+  color: gray;
+  font-family: "Georgia", serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-knit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 3%;
   text-align: center;
-  font-family: 'Lobster', cursive;
 }
 
-/* Form input styles */
+.add-knit label,
+.register label,
+.login label {
+  font-size: 1.2rem;
+  color: #181730;
+}
+
+.add-knit-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 450px;
+  background-color: #fff;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.add-knit-container form input,
+.add-knit-container form textarea {
+  padding: 12px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+  background-color: #c5c5cc;
+  color: gray;
+}
+
+.register input[type="text"],
+.register input[type="email"],
+.register input[type="password"],
 .login input[type="email"],
 .login input[type="password"] {
   padding: 12px;
@@ -318,35 +232,47 @@ form input[type="submit"]:hover {
   background-color: #f7f3e3;
 }
 
-/* Button styling */
-.login button {
-  padding: 12px;
-  font-size: 1.3rem;
-  background-color: #7a4d2b;
-  color: #f9f7f1;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* Search Container */
+.search-container {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  transition: background-color 0.3s;
+  max-width: 800px;
+  margin-top: 30px;
 }
 
-/* Button hover effect */
-.login button:hover {
-  background-color: #8e5e42;
+.search-container > div {
+  width: 45%;
 }
 
-/* Error message styling */
-.login .error {
-  color: red;
-  font-size: 1.1rem;
-  text-align: center;
-  margin-top: 10px;
+.search-container input {
+  padding: 8px;
+  width: 80%;
 }
 
-/* Responsive Design for smaller screens */
+.search-container button {
+  padding: 8px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
 @media (max-width: 600px) {
-  .register, .login, .add-book {
+  .register, .login, .add-knit {
     padding: 20px;
     max-width: 100%;
   }

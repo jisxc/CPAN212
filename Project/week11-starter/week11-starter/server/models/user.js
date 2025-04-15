@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true, trim: true, lowercase: true },
-  password: { type: String, required: true, minlength: 6 },
-  first_name: { type: String, required: true, trim: true },
-  last_name: { type: String, required: true, trim: true }
-}, { timestamps: true });
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+}, { timestamps: true }); // Added timestamps for tracking when the user was created/updated
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

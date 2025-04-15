@@ -10,14 +10,18 @@ const Register = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
 
     try {
       const response = await axios.post(
@@ -29,17 +33,25 @@ const Register = () => {
         alert('Registration successful!');
         navigate('/login');
       } else {
-        alert(`Error: ${response.data.message}`);
+        setError(response.data.message || 'Registration failed');
       }
-    } catch (error) {
-      console.error('Error registering user:', error);
-      alert('An error occurred. Please try again.');
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.data?.message || 'Registration failed');
+      } else if (err.request) {
+        setError('No response from server. Please check your connection.');
+      } else {
+        setError(err.message || 'Unexpected error occurred.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Register</h2>
+      {error && <p style={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
@@ -77,7 +89,9 @@ const Register = () => {
           required
           style={styles.input}
         />
-        <button type="submit" style={styles.button}>Register</button>
+        <button type="submit" style={styles.button} disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
       </form>
     </div>
   );
@@ -86,9 +100,9 @@ const Register = () => {
 const styles = {
   container: {
     maxWidth: '400px',
-    margin: '10% auto',
+    margin: '3% auto',
     padding: '20px',
-    backgroundColor: '#f4f1ea',
+    backgroundColor: '#1c2841',
     borderRadius: '8px',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
   },
@@ -97,7 +111,12 @@ const styles = {
     fontWeight: 'bold',
     marginBottom: '16px',
     textAlign: 'center',
-    color: '#6b4a30',
+    color: '#c6328d',
+  },
+  error: {
+    color: 'red',
+    marginBottom: '16px',
+    textAlign: 'center',
   },
   form: {
     display: 'flex',
@@ -111,8 +130,8 @@ const styles = {
     borderRadius: '4px',
   },
   button: {
-    backgroundColor: '#6b4a30',
-    color: '#fff',
+    backgroundColor: '#181730',
+    color: '#c6328d',
     padding: '12px',
     fontSize: '1rem',
     border: 'none',

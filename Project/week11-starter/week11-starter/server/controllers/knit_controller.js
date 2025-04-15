@@ -24,12 +24,20 @@ exports.createKnit = async (req, res) => {
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
     const [email, password] = credentials.split(':');
 
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Missing credentials' });
+    }
+
     const user = await User.findOne({ email });
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const { patternName, designer, yarns, techniques, price, difficulty } = req.body;
+
+    if (!patternName || !designer || !yarns || !techniques || !price || !difficulty) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
 
     const knit = await Knit.create({
       patternName,
