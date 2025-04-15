@@ -20,3 +20,5 @@ export const searchYarns = (query) =>
 // Search patterns
 export const searchPatterns = (query) =>
   ravelryApi.get('/patterns/search.json', { params: { query } });
+
+
